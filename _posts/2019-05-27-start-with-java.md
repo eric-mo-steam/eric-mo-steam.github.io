@@ -5,7 +5,7 @@ subtitle: "Start with Java: 在 Ubuntu/Mint 上安装 Oracle Java"
 date:     2019-05-27
 author:   "Eric"
 catalog:  true
-header-img: "img/in-post/post-start-with-java/home-bg-o.jpg"
+header-img: "img/post/bg/post-bg-desktop.jpg"
 tags:
   - Linux
   - Ubuntu
@@ -81,8 +81,8 @@ java -version
 
 ![java-version][5]
 
-[1]: /img/in-post/post-start-with-java/download-java.png
-[2]: /img/in-post/post-start-with-java/unzip-java.png
-[3]: /img/in-post/post-start-with-java/update-alternative-java.png
-[4]: /img/in-post/post-start-with-java/set-default-java.png
-[5]: /img/in-post/post-start-with-java/java-version.png
+[1]: /img/post/2019/post-start-with-java/download-java.png
+[2]: /img/post/2019/post-start-with-java/unzip-java.png
+[3]: /img/post/2019/post-start-with-java/update-alternative-java.png
+[4]: /img/post/2019/post-start-with-java/set-default-java.png
+[5]: /img/post/2019/post-start-with-java/java-version.png
