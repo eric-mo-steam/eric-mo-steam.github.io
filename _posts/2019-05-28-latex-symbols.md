@@ -7,7 +7,7 @@ author:   "Eric"
 catalog:  true
 header-img: "img/post-bg-memory.jpg"
 tags:
-  - latex
+  - LaTeX
 ---
 
 ## 1. 字体
