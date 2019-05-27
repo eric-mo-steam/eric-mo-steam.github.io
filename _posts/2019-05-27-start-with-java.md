@@ -5,7 +5,7 @@ subtitle: "Start with Java: 在 Ubuntu/Mint 上安装 Oracle Java"
 date:     2019-05-27
 author:   "Eric"
 catalog:  true
-header-img: "img/post-bg-rwd.jpg"
+header-img: "img/in-post/post-start-with-java/home-bg-o.jpg"
 tags:
   - Linux
   - Ubuntu
@@ -16,7 +16,7 @@ tags:
 ## 1 去官网，选择下载一个 Oracle Java 二进制文件
 该二进制文件以 `tar.gz` 结尾
 
-![java-download](/img/in-post/java-download.png)
+![download-java][1]
 
 ## 2 解压 Oracle Java 二进制文件
 在目录 `/usr/local/java`（如没有，可自行新建） 中，解压
@@ -28,7 +28,7 @@ sudo tar xzf jdk-8u161-linux-x64.tar.gz
 sudo mv jdk1.8.0_161/ jdk1.8　　　　　　　# 改名，便于后续操作
 ```
 
-![image.png-120.7kB][2]
+![unzip-java][2]
 
 ## 3 更改系统 PATH 
 ### 3.1 打开系统的全局配置文件
@@ -55,7 +55,7 @@ sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/local/java/jdk
 sudo update-alternatives --install "/usr/bin/javaws" "javaws" "/usr/local/java/jdk1.8/jre/bin/javaws" 1
 ```
 
-![image.png-115.9kB][3]
+![update-alternative-java][3]
 
 ### 4.2 把 Oracle Java JRE 1.8 设定为新的默认 Java 应用
 ```sh
@@ -64,7 +64,7 @@ sudo update-alternatives --set javac /usr/local/java/jdk1.8/bin/javac
 sudo update-alternatives --set javaws /usr/local/java/jdk1.8/jre/bin/javaws
 ```
 
-![image.png-110.7kB][4]
+![set-default-java][4]
 
 
 ### 4.3 输入以下命令重载 /etc/profile 文件内的系统范围内的 PATH
@@ -73,17 +73,16 @@ sudo update-alternatives --set javaws /usr/local/java/jdk1.8/jre/bin/javaws
 ```
 
 注意，`/etc/profile` 文件中的系统范围内的 `PATH` 将在重启 `Ubuntu` 系统后被重载
-![Alt text](1518536711891.png)
 
 ## 5 查看 Java 版本
 ```sh
 java -version
 ```
 
-![image.png-95.1kB][5]
+![java-version][5]
 
-
-[2]: /img/in-post/java-unzip.png
-[3]: /img/in-post/update-alternative-java.png
-[4]: /img/in-post/set-default-java.png
-[5]: /img/in-post/java-version.png
+[1]: /img/in-post/post-start-with-java/download-java.png
+[2]: /img/in-post/post-start-with-java/unzip-java.png
+[3]: /img/in-post/post-start-with-java/update-alternative-java.png
+[4]: /img/in-post/post-start-with-java/set-default-java.png
+[5]: /img/in-post/post-start-with-java/java-version.png
