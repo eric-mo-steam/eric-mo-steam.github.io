@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Avoiding success at all cost"
-subtitle: 'Watching "Escape from the Ivory Tower: The Haskell Journey"'
+subtitle: 'Watching \"Escape from the Ivory Tower: The Haskell Journey\"'
 author: "Hux"
 header-style: text
 lang: en
