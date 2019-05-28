@@ -1,10 +1,10 @@
 # Site settings
-title: Eric Blog
-SEOTitle: 江帆的博客 | Eric Blog
+title: Eric's Blog
+SEOTitle: 江帆的博客 | Eric's Blog
 header-img: img/home-bg.jpg
 email: eric-mo-steam@gmail.com
 description: "关于程序与设计、黑客与画家 | 这里是江帆的个人博客，与你一起发现更大的世界。"
-keyword: "互联网, 个人网站, 江帆, Eric Blog"
+keyword: "互联网, 个人网站, 江帆, Eric's Blog, Eric"
 url: "https://blog.eric-mo.top"              # your host, for absolute URL
 baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
 
@@ -65,14 +65,13 @@ disqus_username: eric-mo-steam
 netease_comment: false
 
 
-
 # Analytics settings
 # Baidu Analytics 
 # ba_track_id: [your track id]
 
 # Google Analytics
-ga_track_id: 'UA-140874838-1'            # Format: UA-xxxxxx-xx
-ga_domain: blog.eric-mo.top
+# ga_track_id: 'UA-140874838-1'            # Format: UA-xxxxxx-xx
+# ga_domain: blog.eric-mo.top
 
 
 
