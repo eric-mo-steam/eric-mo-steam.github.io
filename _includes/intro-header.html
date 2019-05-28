@@ -48,6 +48,13 @@
             </div>
         </div>
     </div>
+    {% if site.search %}
+    <div align="right">
+        <a id="cb-search-btn"  style="text-decoration:none;" href="javascript:">
+          <i class="iconfont icon-icon-chaxun icon-2x" title="双击ctrl试一下" style="color:#FFFF"></i>
+        </a>&nbsp;&nbsp;&nbsp;
+    </div>
+    {% endif %}
 </header>
 {% endif %}
 
@@ -101,7 +108,15 @@
         <div class="site-heading">
         {% endif %}
           <h1>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1>
-          <span class="subheading">{{ page.description }}</span>
+          <!-- <span class="subheading">{{ page.description }}</span> -->
+          <span class="subheading">
+            {% if site.search %}
+            <a id="cb-search-btn" style="text-decoration:none;" href="javascript:">
+              <i  class="iconfont icon-icon-chaxun icon-1x" style="color:#FFFF" title="双击ctrl试一下"></i>&nbsp;
+            </a>
+            {% endif %}
+            {{ page.description }}
+          </span>
         </div>
       </div>
     </div>

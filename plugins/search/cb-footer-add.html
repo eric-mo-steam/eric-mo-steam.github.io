@@ -1,0 +1,27 @@
+<!-- search plugin response body :start -->
+<div class="cb-search-tool" style="position: fixed; top: 0px ; bottom: 0px; left: 0px; right:  0px;
+opacity: 0.95; background-color: #111111; z-index: 9999; display: none;">
+    <input type="text" class="form-control cb-search-content" id="cb-search-content" style="position: fixed; top: 60px" placeholder="文章标题 日期 标签" >
+
+    <div style="position: fixed; top: 16px; right: 16px;">
+    <a id="cb-close-btn" style="text-decoration:none;" href="javascript:">
+        <i class="iconfont icon-x icon-1x"  style="color:#FFFF"></i>
+    </a>
+    </div>
+</div>
+
+<!-- icon font CSS -->
+<link rel="stylesheet" href="{{ "/plugins/search/css/iconfont/iconfont.css"| prepend: site.baseurl }}">
+<link rel="stylesheet" href="{{ "/plugins/search/css/fe.css"| prepend: site.baseurl }}">
+
+<link rel="stylesheet" href="{{ "/plugins/search/css/cb-search.css" | prepend: site.baseurl }}">
+
+<script src="{{ "/plugins/search/js/bootstrap3-typeahead.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/plugins/search/js/cb-search.js" | prepend: site.baseurl }}"></script>
+<!-- search plugin response body :end -->
+
+<!-- search plugin trigger :start -->
+<a id="cb-search-btn" style="text-decoration:none;" href="javascript:">
+    <i  class="iconfont icon-icon-chaxun icon-1x" style="color:#FFFF" title="双击ctrl试一下"></i>&nbsp;
+</a>
+<!-- search plugin trigger :end -->
