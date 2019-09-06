@@ -131,4 +131,5 @@ OrderManager 类的实现体现了单一原则的思想。首先 OrderManage 类
 
 ### 5.3 例子
 
+
 [1]: /img/post/2019/post-design-pattern-6-principle/calculator-uml.png
