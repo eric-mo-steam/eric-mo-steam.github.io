@@ -58,6 +58,7 @@ kramdown:
 
 # Gitalk settings
 gitalk_enable: true
+gitalk_repo: eric-mo-steam.github.io
 gitalk_client_id: 3d7d2efed750adfff0d4
 gitalk_client_secret: 7d5a3db4cdce86f5d86b3f3eba0ca135061460f4
 
