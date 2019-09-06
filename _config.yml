@@ -56,10 +56,13 @@ kramdown:
       line_numbers: true
       start_line: 1
 
-
+# Gitalk settings
+gitalk_enable: true
+gitalk_client_id: 3d7d2efed750adfff0d4
+gitalk_client_secret: 7d5a3db4cdce86f5d86b3f3eba0ca135061460f4
 
 # Disqus settings
-disqus_username: eric-mo-steam
+# disqus_username: eric-mo-steam
 
 # Netease settings
 netease_comment: false

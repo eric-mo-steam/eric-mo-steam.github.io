@@ -52,6 +52,10 @@ layout: default
                 </ul>
                 <hr style="visibility: hidden;">
 
+                {% if site.gitalk_enable %}
+                    {% include plugins/gitalk.html %}
+                {% endif %}
+
                 {% if site.disqus_username %}
                 <!-- disqus 评论框 start -->
                 <div class="comment">
