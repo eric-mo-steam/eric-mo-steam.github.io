@@ -7,6 +7,7 @@ header-img: "img/post/bg/post-bg-design.jpg"
 catalog:  true
 tags:
   - 设计模式
+  - SOLID
 ---
 
 > 原文参考链接：www.cnblogs.com/pengdai/p/9151800.html
@@ -109,6 +110,7 @@ OrderManager 类的实现体现了单一原则的思想。首先 OrderManage 类
 - 使用多个小接口胜过单个大接口，客户端只需知道自己感兴趣的部分接口。
 - 使用接口隔离原则拆分接口时，首先满足单一职责原则，将一组相关的抽象操作定义在一个接口中。在满足高内聚的前提下，接口中的抽象方法越少越好。
 - 可以在进行系统设计时采用定制服务的方式，针对不同的客户端，提供宽窄不同的接口。
+- 接口隔离原则与单一职责原则，在某些意义上来说，是相通的，甚至可说是重复的。因为单一职责可以说是，客户端所感兴趣的抽象方法的集合。只是两者着眼于不同的视角，接口隔离原则是客户端（调用者）视角，而单一职责原则是程序设计者视角的。
 
 ## 5. 依赖倒置规则（DIP）
 > Dependency Inversion Principle：要依赖于抽象，而不要依赖于具体的实现。
@@ -130,6 +132,81 @@ OrderManager 类的实现体现了单一原则的思想。首先 OrderManage 类
 在此给出原文链接：https://en.wikipedia.org/wiki/Dependency_inversion_principle#cite_note-Martin2003-1
 
 ### 5.3 例子
+某系统提供一个数据转换模块，可以将来自不同数据源的数据换成多种格式，如可以转换来自数据库的数据（DatabaseSource）、也可以转换来自文本的数据（TextSource），转换后的格式可以是 XML 文件（XMLTransformer），也可以是 XLS 文件（XLSTransformer）等。
 
+![data-transform-original-uml][2]
+
+由于需求的变化，该系统可能需要增加新的数据源或者新的文件格式，那么客户类 MainClass 就需要修改源代码，才能使用新的类。但是，这样违背了开闭原则。现使用依赖倒置原则对其进行重构。
+
+![data-transform-present-uml][3]
+
+当然根据实际情况，也可以将 AbstractSource 注入到 AbstractStransformer，依赖注入方式有以下三种
+```java
+/** 
+ * 依赖注入是依赖AbstractSource抽象注入的，而不是具体 
+ * DatabaseSource 
+ * 
+ */  
+abstract class AbstractStransformer {  
+    private AbstractSource source;   
+    /** 
+     * 构造注入(Constructor Injection)：通过构造函数注入实例变量。 
+     */  
+    public void AbstractStransformer(AbstractSource source){  
+        this.source = source;           
+    }  
+    /**      
+     * 设值注入(Setter Injection)：通过Setter方法注入实例变量。 
+     * @param source : the sourceto set        
+     */       
+    public void setSource(AbstractSource source) {            
+        this.source = source;             
+    }  
+    /**
+     * 接口注入(Interface Injection)：通过接口方法注入实例变量。 
+     * @param source 
+     */  
+    public void transform(AbstractSource source ) {    
+        source.getSource();  
+        System.out.println("Stransforming ...");    
+    }      
+}
+
+```
+
+## 6. 合成复用原则（CRP）
+> Composite Reuse Principle（Composition over inheritance）：要尽可能使用对象组合，而不是继承关系达到软件复用的目的。
+
+### 6.1 分析
+- 继承复用：实现简单，易于扩展，容易破坏系统封装性；从基类继承来的实现是静态的，不能在运行时发生改变，灵活性较差（“白箱”复用）。合成复用：耦合度低，可以选择性地调用成员对象的接口，可以运行时利用多态实现不同的程序行为（“黑箱”复用）。
+- 合成关系分为两种关系：组合和聚合。
+  - 组合
+    - 表示部分与整体的关系，部分依托于整体而存在；比如，机翼是飞机的一部分，没有了飞机就无法驱使机翼
+    - 在 UML 类图中，组合关系用实心菱形的实直线来表示
+    - 在程序运行中，组合关系表现为部分与整体的生命周期一致，共同诞生共同消亡；比如 HashMap 与 Entry。
+  - 聚合
+    - 也表示部分与整体的关系，但是部分可以独立于整体而存在；比如：螺丝是玩具的一部分，却可以脱离玩具用于其他设备上
+    - 在 UML 类图中，聚合关系用空心菱形的实直线来表示；
+    - 在程序运行中，聚合关系表现为部分的生命周期可以超越整体，即部分一般不是由整体创建，而是由外部注入，当整体消亡时，部分仍能服务于其他对象。
+
+## 7. 迪米特法则（LoD）
+> Law of Demeter：系统中的类尽量不要与其他非直接相关的类相互作用，以减少类的耦合度。
+
+### 7.1 定义
+- 每个单元应只与朋友发生关联，而不应与陌生人发生关联。
+- 在迪米特法则中，对于一个对象，其朋友包括以下：（1）当前对象本身（this）；（2）以参数形式传入到当前对象方法中的对象；（3）当前对象的成员对象；（4）如果当前对象的成员对象是一个集合，那么集合中的元素也都是朋友；（5）当前对象所创建的对象。（6）一个能被当前对象访问的全局对象
+- 迪米特法则就是要求，减少与陌生人的关联。
+  - 更加正式的定义是：对于对象 O 的方法 a，a 应调用更多地调用对象 O 的朋友的方法 b，而应减少对对象 O 的陌生人的方法 c。
+  - 直观来说，“x.Method()”是满足迪米特法则的，而“x.y.Method()”是违背迪米特法则的。如果一个面向对象语言使用“.”作为属性和方法的标识符，那么迪米特法则可以归结为一句话：值使用一个“.”
+  - 例如：一个人想让一只狗走路，它并不会命令狗的腿去走路，而是命令狗去走路。然后，狗自己就会命令自己的腿去走路。
+
+### 7.2 分析
+- 遵循迪米特法则，会使得软件更具可维护性和适应能力。因为对象能更少地依赖于其他对象的内部结构。
+- 遵循迪米特发则，会减少一个方法中潜在的可调用的其他方法的数量，有助于减少程序中的 bug。与此同时，迪米特规则，为了传递成员对象的调用，也会增加单个类中的方法数量，因此增加出现 bug 的可能。
+
+## 8. 总结
+在整个软件架构之初，应以开闭原则为设计目标，将依赖倒置原则作为实现手段，去做符合单一职责原则和接口隔离原则的抽象化；在开发过程中，遵循合成复用原则，组成/聚合优于继承；不得不继承时，遵循里式替换原则中对类继承的约束；在实现方法时，遵循迪米特法则，减少与陌生人的关联。
 
 [1]: /img/post/2019/post-design-pattern-6-principle/calculator-uml.png
+[2]: /img/post/2019/post-design-pattern-6-principle/data-transform-original-uml.jpg
+[3]: /img/post/2019/post-design-pattern-6-principle/data-transform-present-uml.jpg

@@ -6,11 +6,11 @@
 <script type="text/javascript">
     var gitalk = new Gitalk({        
         // gitalk的主要参数
-        clientID: "{{site.gitalk_client_id}}",
-        clientSecret: "{{site.gitalk_client_secret}}",
-        repo: "{{site.gitalk_repo}}",
-        owner: "{{site.github_username}}",
-        admin: ["{{site.github_username}}"],
+        clientID: "your client id",
+        clientSecret: "your client secret ",
+        repo: "your github repo",
+        owner: "your github username",
+        admin: ["your github username"],
         id: md5(location.pathname),
     });
     gitalk.render('gitalk-container');
