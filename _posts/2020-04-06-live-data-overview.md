@@ -81,13 +81,53 @@ public abstract class Lifecycle {
 
 `Lifecycle` 对 `LiveData` 提供了生命周期感知能力，避免了 Activity/Fragment 的内存泄漏问题。
 
-## 3. 使用
+## 3. 主要方法和内部类
+```java
+public abstract class LiveData<T> {
+    @MainThread
+    public void observe(@NonNull LifecycleOwner owner, @NonNull Observer<? super T> observer) {
+    }
+
+    @MainThread
+    public void removeObservers(@NonNull final LifecycleOwner owner) {
+
+    @MainThread
+    public void observeForever(@NonNull Observer<? super T> observer) {
+    }
+
+    @MainThread
+    public void removeObserver(@NonNull final Observer<? super T> observer) {
+    }
+
+    protected void postValue(T value) {
+    }
+
+    @MainThread
+    protected void setValue(T value) {
+    }
+
+    @Nullable
+    public T getValue() {
+    }
+
+    private abstract class ObserverWrapper {
+    }
+
+    class LifecycleBoundObserver extends ObserverWrapper implements GenericLifecycleObserver {
+    }
+
+    private class AlwaysActiveObserver extends ObserverWrapper {
+    }
+}
+```
+
+## 4. 使用
 如果要实现：
 1. 刚进入界面时，先获取数据库的数据来刷新界面，然后获取云端数据来刷新界面
 2. 点击界面上的按钮，触发一次访问云端数据，然后刷新界面
 
 可以按照如下步骤来编码。
-### 3.1 以数据库作为数据源的数据仓
+### 4.1 以数据库作为数据源的数据仓
 ```java
 public class DatabaseRepo {
     private MutableLiveData<Data> mData = new MutableLiveData<>();
@@ -108,7 +148,7 @@ public class DatabaseRepo {
 }
 ```
 
-### 3.2 以远（云）端作为数据源的数据仓
+### 4.2 以远（云）端作为数据源的数据仓
 ```java
 public class RemoteRepo {
     private MutableLiveData<Data> mData = new MutableLiveData<>();
@@ -135,7 +175,7 @@ public class RemoteRepo {
 }   
 ```
 
-### 3.3 合并两个数据源为统一数据仓
+### 4.3 合并两个数据源为统一数据仓
 ```java
 public class Repo {
     private DatabaseRepo mDatabaseRepo = new DatabaseRepo();
@@ -170,7 +210,7 @@ public class Repo {
 }
 ```
 
-### 3.4 在 Activity 中使用
+### 4.4 在 Activity 中使用
 ```java
 public class MainActivity extends AppCompatActivity {
     private Repo mRepo = new Repo();
@@ -199,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
-## 4. 总结
+## 5. 总结
 `LiveData` 提供了一种 `WorkThread` 与 `MainThread` 沟通的新方式。其线程数据交换方式是基于 Handler 来实现的。除开 `Lifecycle` 提供的生命周期感知能力，`LiveData` 与 `EventBus` 有些类似，都是观察者模式的实现，都利用了 Handler 作为线程数据交换方式。但是，两者在用途上，却有着不同的定位。
 
 ![eventbus-vs-livedata][5]
