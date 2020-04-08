@@ -84,38 +84,68 @@ public abstract class Lifecycle {
 ## 3. 主要方法和内部类
 ```java
 public abstract class LiveData<T> {
+    /**
+     * 添加一个生命周期感知的观察者
+     */
     @MainThread
     public void observe(@NonNull LifecycleOwner owner, @NonNull Observer<? super T> observer) {
     }
 
+    /**
+     * 移除与 Lifecycle 持有者关联的所有观察者
+     */
     @MainThread
     public void removeObservers(@NonNull final LifecycleOwner owner) {
 
+    /**
+     * 添加永久观察者
+     */
     @MainThread
     public void observeForever(@NonNull Observer<? super T> observer) {
     }
 
+    /**
+     * 移除观察者
+     */
     @MainThread
     public void removeObserver(@NonNull final Observer<? super T> observer) {
     }
 
+    /**
+     * 更新数据（可在 MainThread、WorkThread）
+     */
     protected void postValue(T value) {
     }
 
+    /**
+     * 更新数据（仅可在 MainThread）
+     */
     @MainThread
     protected void setValue(T value) {
     }
 
+    /**
+     * 获取最新数据
+     */
     @Nullable
     public T getValue() {
     }
 
+    /**
+     * 观察者包装类
+     */
     private abstract class ObserverWrapper {
     }
 
+    /**
+     * 受 Lifecycle 约束的观察者
+     */
     class LifecycleBoundObserver extends ObserverWrapper implements GenericLifecycleObserver {
     }
 
+    /**
+     * 永久活跃观察者
+     */
     private class AlwaysActiveObserver extends ObserverWrapper {
     }
 }
@@ -258,4 +288,4 @@ public class MainActivity extends AppCompatActivity {
 [3]: /img/post/2019/post-live-data-overview/LifecycleOwner-source.png
 [4]: /img/post/2019/post-live-data-overview/getLifecycle-call.png
 [5]: /img/post/2019/post-live-data-overview/eventbus-vs-livedata.png
-[6]: /img/post/2019/post-live-data-overview/android-application-architecture.png·
+[6]: /img/post/2019/post-live-data-overview/android-application-architecture.png
